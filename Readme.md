@@ -45,7 +45,10 @@ HydraMini是Xilinx推出的基于Pynq-Z2开发板和Xilinx Edge AI解决方案�
 </p>
 
 - 源代码目录结构
-    - Host-Part
+    
+    本案例会提供用于训练和DNNDK量化编译的Host-Part源代码（需要将其拷贝到安装好开发环境的PC/虚拟机对应目录，/home/xilinx/），以及在PYNQ-Z2板卡上的训练数据收集和AI推断部署的Pynq-Part源代码（需要将其拷贝到PYNQ-Z2板卡对应目录，/home/xilinx/）。
+    
+    - [Host-Part](https://github.com/wutianze/pynq_car/tree/master/Host-Part)
         - process_img.py # 图像预处理
         - process_train.sh # 图像预处理加训练脚本
         - train.py # 模型训练
@@ -55,7 +58,7 @@ HydraMini是Xilinx推出的基于Pynq-Z2开发板和Xilinx Edge AI解决方案�
             - graph_input_fn.py # 量化输入数据生成器
             - keras_to_tensorflow.py # keras模型转tensorflow模型脚本
             - freeze_detect.sh # 模型转换并显示输入输出层信息脚本
-    - Pynq-Part/Car
+    - [Pynq-Part/Car](https://github.com/wutianze/pynq_car/tree/master/Pynq-Part/Car)
         - src
             - collect.cc # 收集训练数据
             - run.cc # 小车运行
