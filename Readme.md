@@ -41,6 +41,7 @@ HydraMini是Xilinx推出的基于Pynq-Z2开发板和Xilinx Edge AI解决方案�
 </p>
 <p align = "center">
 </p>
+
 - 源代码目录结构
     - Host-Part
         - process_img.py # 图像预处理
@@ -68,6 +69,7 @@ HydraMini是Xilinx推出的基于Pynq-Z2开发板和Xilinx Edge AI解决方案�
         - Makefile
         - model/ # elf文件存放脚本
         - build/ # 可执行文件目录
+
 # 操作步骤
 ## 训练数据搜集
 HydraMini通过人手动操控小车完成跑圈来搜集训练数据。下面为步骤详解。
