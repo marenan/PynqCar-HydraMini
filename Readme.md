@@ -42,32 +42,32 @@ HydraMini是Xilinx推出的基于Pynq-Z2开发板和Xilinx Edge AI解决方案�
 <p align = "center">
 </p>
 - 源代码目录结构
-	- Host-Part
-		- process_img.py # 图像预处理
-		- process_train.sh # 图像预处理加训练脚本
-		- train.py # 模型训练
-		- dnndk-host # DNNDK量化编译目录
-			- compile.sh # 编译
-			- quant.sh # 量化
-			- graph_input_fn.py # 量化输入数据生成器
-			- keras_to_tensorflow.py # keras模型转tensorflow模型脚本
-			- freeze_detect.sh # 模型转换并显示输入输出层信息脚本
-	- Pynq-Part/Car
-		- src
-			- collect.cc # 收集训练数据
-			- run.cc # 小车运行
-			- run_fpt.cc # 本教程中用不到
-			- runYolo.cc # 本教程中用不到
-			- runYolo.h # 本教程中用不到
-			- control.h # 小车底层控制
-			- control.cc # 小车底层控制
-			- cv_lane.h # 本教程中用不到
-			- cv_lane.cc # 本教程中用不到
-			- safe_queue.h
-		- ini.sh # 小车环境初始化脚本
-		- Makefile
-		- model/ # elf文件存放脚本
-		- build/ # 可执行文件目录
+    - Host-Part
+        - process_img.py # 图像预处理
+        - process_train.sh # 图像预处理加训练脚本
+        - train.py # 模型训练
+        - dnndk-host # DNNDK量化编译目录
+            - compile.sh # 编译
+            - quant.sh # 量化
+            - graph_input_fn.py # 量化输入数据生成器
+            - keras_to_tensorflow.py # keras模型转tensorflow模型脚本
+            - freeze_detect.sh # 模型转换并显示输入输出层信息脚本
+    - Pynq-Part/Car
+        - src
+            - collect.cc # 收集训练数据
+            - run.cc # 小车运行
+            - run_fpt.cc # 本教程中用不到
+            - runYolo.cc # 本教程中用不到
+            - runYolo.h # 本教程中用不到
+            - control.h # 小车底层控制
+            - control.cc # 小车底层控制
+            - cv_lane.h # 本教程中用不到
+            - cv_lane.cc # 本教程中用不到
+            - safe_queue.h
+        - ini.sh # 小车环境初始化脚本
+        - Makefile
+        - model/ # elf文件存放脚本
+        - build/ # 可执行文件目录
 # 操作步骤
 ## 训练数据搜集
 HydraMini通过人手动操控小车完成跑圈来搜集训练数据。下面为步骤详解。
