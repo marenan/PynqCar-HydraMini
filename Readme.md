@@ -25,9 +25,11 @@ HydraMini是Xilinx推出的基于Pynq-Z2开发板和Xilinx Edge AI解决方案�
 
 # 基础知识
 在继续阅读后续教程前，笔者推荐掌握或熟悉的知识：
-1. C++ & Python3
-2. Ubuntu Linux使用
-3. Keras + Tensorflow基本用法
+1. [PYNQ软件框架](www.pynq.io)
+2. [Xilinx Edge AI](https://www.xilinx.com/products/design-tools/ai-inference/edge-ai-platform.html)
+3. C++ & Python3
+4. Ubuntu Linux使用
+5. Keras + Tensorflow基本用法
 # 介绍
 - 训练流程。首先控制小车采集数据，然后使用keras框架进行训练并把保存的模型转化为tensorflow模型，最后通过DNNDK套件进行量化编译得到最终可以在DPU上运行的核文件。
 <p align="center">
