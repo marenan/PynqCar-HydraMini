@@ -81,14 +81,23 @@ HydraMini是Xilinx推出的基于Pynq-Z2开发板和Xilinx Edge AI解决方案�
 
 # 操作步骤
 ## 训练数据搜集
-HydraMini通过人手动操控小车完成跑圈来搜集训练数据。下面为步骤详解。
-1. 将Car文件夹拷贝至小车`/home/xilinx`（如果使用Xilinx提供的小车镜像则直接进入`/home/xilinx/Car`即可）
-2. 初始化环境
+HydraMini通过人手动操控小车完成跑圈来搜集训练数据。PC与小车需要连接到同一个wifi热点，然后通过SSH传输文件到PYNQ-Z2板卡，然后控制小车搜集训练数据，下面为步骤详解。
+1. 将PYNQ-Z2串口连接至电脑，打开PC端MobaXterm软件，通过以下命令配置板卡连接到wifi热点（可通过个人手机共享网络热点），并查看板卡的IP地址，关闭串口终端
+```shell
+xilinx@pynq:~$ sudo nmtui
+# 提示输入密码：xilinx  然后为板卡配置无线网络
+xilinx@pynq:~$ ifconfig 
+#查看本板卡的无线网络IP地址
+```
+2. 通过MobaXterm软件SSH终端连接至上一步获得的板卡IP地址，将Car文件夹拷贝至小车`/home/xilinx`
+3. 在SSH终端，继续初始化环境
 ```shell
 xilinx@pynq:~$ cd /home/xilinx/Car
 xilinx@pynq:~$ su
 # 提示输入密码：xilinx
-xilinx@pynq:~$ ./ini.sh #加载dpu.ko模块，配置X11转发，创建build文件夹
+xilinx@pynq:~$ ./ini.sh 
+#加载dpu.ko模块，配置X11转发，创建build文件夹
+#如无法执行，则通过vim打开ini.sh文件，手动执行shell脚本
 ```
 3. 编译collect可执行文件并运行
 ```shell
