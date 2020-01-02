@@ -99,12 +99,12 @@ xilinx@pynq:~$ ./ini.sh
 #加载dpu.ko模块，配置X11转发，创建build文件夹
 #如无法执行，则通过vim打开ini.sh文件，手动执行shell脚本
 ```
-3. 编译collect可执行文件并运行
+4. 编译collect可执行文件并运行
 ```shell
 xilinx@pynq:~$ make collect
 xilinx@pynq:~$ ./build/collect 50000 0.5 1# 第一个参数为所要搜集的图片数量，小车搜集到足够图片后会自动停止；第二个参数指定的小车运行速度，这个值在最后运行的时候建议保持一致；第三个参数如果为1则表示显示记录的图片，可以用来调节摄像头角度
 ```
-4. 控制小车运行
+5. 控制小车运行
 ```
 * w: 启动，后轮上速维持设定值
 * a: 左转
@@ -113,7 +113,7 @@ xilinx@pynq:~$ ./build/collect 50000 0.5 1# 第一个参数为所要搜集的图
 * t: 保存图片或暂停保存（在你觉得不适合拍照保存的时候暂停记录）
 * Esc: 终止进程（不会删除已保存的记录）
 ```
-5.现在你将看到`Car/images`文件夹，其中`train.csv`为标签数据，其余为图片，将这个文件夹拷贝到安装了Host环境的虚拟机或物理机电脑上（可以通过scp或者读卡器拷贝），路径为`/home/xilinx/Host-Part/images`
+6. 现在你将看到`Car/images`文件夹，其中`train.csv`为标签数据，其余为图片，将这个文件夹拷贝到安装了Host环境的虚拟机或物理机电脑上（可以通过scp或者读卡器拷贝），路径为`/home/xilinx/Host-Part/images`
 
 ## 数据预处理加训练
 进入Host端系统，首先激活conda虚拟环境。输入以下命令会调用`process_img.py`进行数据预处理并保存结果到`training_data_npz/`，然后调用`train.py`来进行训练并且把结果保存到`model/`。`process_img.py`和`train.py`可以通过运行`process_train.sh`脚本来执行。
