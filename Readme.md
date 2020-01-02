@@ -14,8 +14,10 @@ HydraMini是Xilinx推出的基于Pynq-Z2开发板和Xilinx Edge AI解决方案�
 小车采用两块电池给板子以及电机供电，通过单目摄像头感知环境。
 
 # 环境配置
-1. PC端：下载Xilinx提供的Ubuntu16.04+DNNDK镜像。如果想自行配置请参考[Host端配置](https://github.com/wutianze/dnndk-pynqz2/blob/master/build-host-dnndk.md)
-2. Pynq-Z2端：下载Xilinx提供的[Pynq-Z2+HydraMini小车系统](https://pan.baidu.com/s/1gOJaoJJ8z2jf-BaLklID3Q)并烧录到SD卡。如果想自行配置请参考[Pynq端配置](https://github.com/wutianze/dnndk-pynqz2/blob/master/build-pynqz2-system.md)
+
+
+1. PC端：使用Xilinx提供的Ubuntu16.04+DNNDK虚拟机镜像（虚拟机密码为**xilinx**）。如果想自行配置请参考[Host端配置](https://github.com/wutianze/dnndk-pynqz2/blob/master/build-host-dnndk.md)
+2. Pynq-Z2板卡端：下载Xilinx提供的[Pynq-Z2+HydraMini小车系统](https://pan.baidu.com/s/1gOJaoJJ8z2jf-BaLklID3Q)并烧录到SD卡（小车镜像运行ubuntu系统，用户名与密码均为**xilinx**）。如果想自行配置请参考[Pynq端配置](https://github.com/wutianze/dnndk-pynqz2/blob/master/build-pynqz2-system.md)
 3. 跑道搭建：使用胶带或其他材料模仿一般的道路搭建环形跑道，尽量保持左转和右转频率一样多，比如下图所示8字形跑道。
 <p align="center">
 <img src ="./images/Runway.png">
@@ -24,6 +26,7 @@ HydraMini是Xilinx推出的基于Pynq-Z2开发板和Xilinx Edge AI解决方案�
 </p>
 
 # 基础知识
+
 在继续阅读后续教程前，笔者推荐掌握或熟悉的知识：
 1. [PYNQ软件框架](www.pynq.io)
 2. [Xilinx Edge AI](https://www.xilinx.com/products/design-tools/ai-inference/edge-ai-platform.html)
@@ -45,8 +48,8 @@ HydraMini是Xilinx推出的基于Pynq-Z2开发板和Xilinx Edge AI解决方案�
 </p>
 
 - 源代码目录结构
-    
-    本案例会提供用于训练和DNNDK量化编译的Host-Part源代码（需要将其拷贝到安装好开发环境的PC/虚拟机对应目录，/home/xilinx/），以及在PYNQ-Z2板卡上的训练数据收集和AI推断部署的Pynq-Part源代码（需要将其拷贝到PYNQ-Z2板卡对应目录，/home/xilinx/）。
+  
+    本案例会提供用于训练和DNNDK量化编译的Host-Part源代码（需要将其拷贝到安装好DNNDK开发环境的PC机或虚拟机目录，/home/xilinx/），以及训练数据收集和AI推断部署的Pynq-Part源代码（需要将其拷贝到PYNQ-Z2板卡目录，/home/xilinx/）。
     
     - [Host-Part](https://github.com/wutianze/pynq_car/tree/master/Host-Part)
         - process_img.py # 图像预处理
@@ -74,6 +77,7 @@ HydraMini是Xilinx推出的基于Pynq-Z2开发板和Xilinx Edge AI解决方案�
         - Makefile
         - model/ # elf文件存放脚本
         - build/ # 可执行文件目录
+
 
 # 操作步骤
 ## 训练数据搜集
@@ -190,11 +194,13 @@ xilinx@pynq:~$ ./build/collect 50000 0.5 1# 第一个参数为所要搜集的图
 4. 在`run.cc`中摄像头会先放缩图片至160*120然后裁掉头部再放入数据队列，在设置DPU输入时会进行`/255 - 0.5`处理。
 5. DPU的输出会映射回`-1 - 1`范围再传给舵机。
 6. 注意整个过程都是用opencv读入图片，所以不需要BGR转RGB。
+7. [小车手动控制源码修改参考](https://github.com/wutianze/pynq_car/blob/master/Pynq-Z2_AD_Car/pynq-guide/collect_guide.md)，[小车硬件控制源码修改参考](https://github.com/wutianze/pynq_car/blob/master/Pynq-Z2_AD_Car/pynq-guide/control_guide.md)，[小车自动运行源码修改参考](https://github.com/wutianze/pynq_car/blob/master/Pynq-Z2_AD_Car/pynq-guide/run_guide.md)，[模型训练编译源码修改参考](https://github.com/wutianze/pynq_car/blob/master/Pynq-Z2_AD_Car/host-guide/train_compile.md)，[DNNDK使用参考](https://github.com/wutianze/pynq_car/blob/master/Pynq-Z2_AD_Car/host-guide/dnndk_usage.md)
 # 参考链接及文档
 [github项目链接](https://github.com/wutianze/pynq_car)
 [gitbook链接](https://app.gitbook.com/@1369130123/s/pynq-z2-ad-car/)
 [FPT比赛设计论文](https://easychair.org/publications/preprint/GMvL)
 [HydraMini论文]()
 [DNNDK教程](https://github.com/wutianze/dnndk-pynqz2)
+
 # 声明
 本文档为原创教程，任何转载和引用请注明出处，谢谢！
